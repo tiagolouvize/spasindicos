@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPA — Síndicos Profissionais Associados | Gestão de Condomínios na Ilha do Governador</title>
+  <meta name="description" content="Gestão profissional de condomínios com transparência e resultado. +10 anos de experiência na Ilha do Governador, RJ. Síndico profissional especializado — sem trocar sua administradora.">
+  <meta property="og:title" content="SPA Síndicos Profissionais Associados">
+  <meta property="og:description" content="Gestão Profissional de Condomínios. +10 anos na Ilha do Governador.">
+  <meta property="og:type" content="website">
+  <meta name="keywords" content="síndico profissional, gestão de condomínios, administração condominial, Ilha do Governador, Rio de Janeiro">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════
+       RESET + TOKENS
+       ═══════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* navy palette */
+      --navy-deepest: #06123A;
+      --navy-deep:    #0A1A4D;
+      --navy:         #102B5E;
+      --navy-light:   #1A3A7C;
+      --navy-card:    #143571;
+      --navy-soft:    #1F4493;
+      /* gold/cream accent */
+      --gold:         #F1DEAA;
+      --gold-deep:    #c59e59;
+      --gold-glow:    rgba(241,222,170,.55);
+      /* cream backgrounds */
+      --cream:        #F2EBDB;
+      --cream-warm:   #ECE3CC;
+      --paper:        #FAF5E8;
+      /* ink + text */
+      --ink:          #0A0F1F;
+      --text-body:    #2A3147;
+      --text-muted:   #6A7088;
+      /* misc */
+      --hair:         rgba(10,15,31,.10);
+      --hair-light:   rgba(255,255,255,.14);
+      --max:          1280px;
+      /* stats counter */
+      --count-color:  #0b2a4a;
+      --suffix-color: #c6a46c;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: var(--text-body);
+      background: var(--paper);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      line-height: 1.02;
+      letter-spacing: -0.028em;
+    }
+    .serif {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+
+    /* ═══════════════════════════════════════════════════
+       BUTTONS — PILLS + GLOW
+       ═══════════════════════════════════════════════════ */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      border: none;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, background .3s, color .3s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .pill-gold {
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-weight: 600;
+    }
+    .pill-gold:hover { transform: translateY(-2px); background: var(--gold-deep); }
+
+    .pill-gold-glow {
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-weight: 600;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(241,222,170,.5),
+        0 0 28px rgba(241,222,170,.35),
+        0 12px 36px rgba(241,222,170,.25);
+      animation: goldPulse 3.6s ease-in-out infinite;
+    }
+    .pill-gold-glow:hover {
+      transform: translateY(-2px);
+      background: var(--gold-deep);
+      color: var(--paper);
+      box-shadow:
+        0 0 0 1px rgba(241,222,170,.7),
+        0 0 48px rgba(241,222,170,.6),
+        0 16px 56px rgba(241,222,170,.45);
+    }
+    @keyframes goldPulse {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(241,222,170,.4), 0 0 28px rgba(241,222,170,.3), 0 12px 36px rgba(241,222,170,.2); }
+      50% { box-shadow: 0 0 0 1px rgba(241,222,170,.6), 0 0 44px rgba(241,222,170,.5), 0 14px 48px rgba(241,222,170,.35); }
+    }
+
+    .pill-outline-light {
+      background: transparent;
+      color: var(--paper);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+    .pill-outline-light:hover {
+      background: var(--paper);
+      color: var(--navy-deep);
+      border-color: var(--paper);
+      transform: translateY(-2px);
+    }
+
+    .pill-ink {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .pill-ink:hover { background: var(--navy-deep); transform: translateY(-2px); }
+
+    .pill-outline-dark {
+      background: transparent;
+      color: var(--navy-deep);
+      border: 1px solid var(--hair);
+    }
+    .pill-outline-dark:hover {
+      background: var(--navy-deep);
+      color: var(--paper);
+      border-color: var(--navy-deep);
+    }
+
+    .pill-lg { padding: 18px 32px; font-size: 15px; }
+
+    /* eyebrow pill */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      border: 1px solid var(--hair);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+    }
+    .eyebrow::before {
+      content: '✦';
+      color: var(--navy-deep);
+      font-size: 11px;
+    }
+    .eyebrow.light {
+      color: rgba(255,255,255,.78);
+      border-color: var(--hair-light);
+    }
+    .eyebrow.light::before { color: var(--gold); }
+
+    /* ═══════════════════════════════════════════════════
+       FADE / RISE
+       ═══════════════════════════════════════════════════ */
+    .rise {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+    }
+    .rise.in,
+    .rise.active { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════════════════════════════════════════
+       1 — HEADER
+       ═══════════════════════════════════════════════════ */
+    #hd {
+      position: fixed;
+      top: 16px; left: 24px; right: 24px;
+      z-index: 100;
+      transition: top .35s;
+    }
+
+    /* Cortina de blur — borra o conteúdo que passa pelo header */
+    .hd-curtain {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 96px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      pointer-events: none;
+      z-index: 98;
+      -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    }
+    .hd-in {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 16px 12px 22px;
+      background: rgba(250,245,232,.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(10,15,31,.08);
+      border-radius: 100px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 8px 32px rgba(10,15,31,.06);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 36px; height: 36px;
+      background: var(--navy-deep);
+      border-radius: 10px;
+      display: grid; place-items: center;
+      color: var(--gold);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: -0.02em;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1; }
+    .brand-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--navy-deep);
+      letter-spacing: -0.025em;
+    }
+    .brand-tag {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .hd-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      justify-self: center;
+    }
+    .hd-nav a {
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-body);
+      transition: background .2s, color .2s;
+    }
+    .hd-nav a:hover {
+      background: rgba(10,26,77,.07);
+      color: var(--navy-deep);
+    }
+    .hd-nav a.active {
+      background: var(--navy-deep);
+      color: var(--paper);
+    }
+
+    .hd-cta { padding: 12px 22px; }
+
+    /* hamburger */
+    .burger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--navy-deep); margin: 5px 0;
+      transition: all .3s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mob {
+      display: flex;
+      position: fixed; inset: 0;
+      background: var(--paper); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 22px;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transform: translateY(0);
+      will-change: transform, opacity;
+      transition: opacity .32s ease, transform .38s cubic-bezier(.2,.8,.2,1), visibility 0s linear .38s;
+    }
+    .mob.open {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity .32s ease, transform .38s cubic-bezier(.2,.8,.2,1), visibility 0s linear 0s;
+    }
+    .mob a {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 30px; font-weight: 600;
+      color: var(--navy-deep); letter-spacing: -0.025em;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       2 — HERO  (text overlay on image, parallax)
+       ═══════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 92vh;
+      overflow: hidden;
+      background: var(--navy-deepest);
+      padding: 0 24px;
+    }
+    /* parallax image layer
+       SUBSTITUIR por <img src="/assets/hero-condominio.jpg"> ou <video> dentro da .hero-media */
+    .hero-media {
+      position: absolute;
+      inset: -8% 0;
+      height: 116%;
+      will-change: transform;
+      z-index: 0;
+      background: var(--navy-deepest); /* fallback enquanto vídeo carrega */
+      overflow: hidden;
+    }
+    .hero-media video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+    /* fade base → topo sobre o vídeo */
+    .hero-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(6,18,58,.45) 0%, transparent 45%, rgba(6,18,58,.88) 100%),
+        radial-gradient(ellipse at 60% 80%, rgba(241,222,170,.10), transparent 55%);
+    }
+    /* grain */
+    .hero-grain {
+      position: absolute; inset: 0; z-index: 1;
+      pointer-events: none;
+      opacity: .15;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 140px 0 96px;
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 1fr);
+      gap: 56px;
+      align-items: end;
+    }
+    .hero-eye {
+      grid-column: 1 / -1;
+      align-self: start;
+      justify-self: start;
+    }
+    .hero-h1 {
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 500;
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      color: var(--paper);
+      max-width: 880px;
+    }
+    .hero-h1 em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: -0.015em;
+      display: inline-block;
+    }
+    .hero-side {
+      padding-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      align-items: flex-start;
+      max-width: 360px;
+    }
+    .hero-intro {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(250,245,232,.78);
+    }
+    .hero-intro strong { color: var(--paper); font-weight: 600; }
+
+    /* ═══════════════════════════════════════════════════
+       3 — STATS  (Ilha do Governador)
+       ═══════════════════════════════════════════════════ */
+    #stats {
+      padding: 80px 32px;
+      background: var(--paper);
+    }
+    .stats-wrap { max-width: var(--max); margin: 0 auto; }
+    .stats-eye { margin-bottom: 28px; }
+    .stats-copy {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 400;
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      color: var(--navy-deep);
+      max-width: 920px;
+      margin-bottom: 56px;
+    }
+    .stats-copy em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--gold-deep);
+    }
+    .stats-copy strong { font-weight: 600; }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      padding-top: 36px;
+      border-top: 1px solid var(--hair);
+    }
+    .stat-block {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .stat-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 80px;
+      line-height: 1;
+      color: var(--count-color);
+      letter-spacing: -0.04em;
+    }
+    .stat-num .suffix,
+    .suffix { color: var(--suffix-color); }
+    .stat-num .slash { color: var(--text-muted); margin: 0 -2px; font-weight: 300; }
+    .count {
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+      min-width: 2ch;
+      text-align: right;
+    }
+    .stat-info-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--navy-deep);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .stat-info-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       4 — PROBLEMAS (Sintomas)
+       ═══════════════════════════════════════════════════ */
+    .section-problemas {
+      --prob-bg:             #f2ebdb;
+      --prob-bg-hover:       #ece3cc;
+      --prob-text-title:     #0A1A4D;
+      --prob-text-body:      #5b6475;
+      --prob-numero:         #b8955a;
+      --prob-numero-hover:   #7a5c2e;
+      --prob-linha:          rgba(0,0,0,.06);
+      --prob-linha-destaque: rgba(184,149,90,.4);
+      background: var(--prob-bg);
+      padding: 110px 0;
+    }
+    .sec-hd {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+    .sec-hd h2 {
+      font-size: clamp(36px, 4.2vw, 60px);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      color: var(--navy-deep);
+      margin-top: 18px;
+    }
+    .sec-hd h2 em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold-deep);
+    }
+    .sec-hd p {
+      font-size: 15.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 460px;
+    }
+
+    .grid-problemas {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .problema-item {
+      position: relative;
+      display: flex;
+      gap: 24px;
+      padding: 48px;
+      border-bottom: 1px solid var(--prob-linha);
+      border-right: 1px solid var(--prob-linha);
+      transition: all 0.3s ease;
+    }
+    .problema-item:nth-child(2n) { border-right: none; }
+    .problema-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      height: 60%;
+      width: 3px;
+      background: transparent;
+      transition: .3s;
+    }
+    .problema-item:hover {
+      background: var(--prob-bg-hover);
+      transform: translateX(6px);
+    }
+    .problema-item:hover::before { background: var(--prob-linha-destaque); }
+    .problema-numero {
+      font-family: 'Instrument Serif', serif;
+      font-size: 64px;
+      font-style: italic;
+      color: var(--prob-numero);
+      min-width: 60px;
+      line-height: 1;
+      transition: .3s;
+    }
+    .problema-item:hover .problema-numero { color: var(--prob-numero-hover); }
+    .problema-conteudo h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      color: var(--prob-text-title);
+    }
+    .problema-conteudo p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0;
+      color: var(--prob-text-body);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: .7s ease;
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal:nth-child(1) { transition-delay: .1s; }
+    .reveal:nth-child(2) { transition-delay: .2s; }
+    .reveal:nth-child(3) { transition-delay: .3s; }
+    .reveal:nth-child(4) { transition-delay: .4s; }
+    .reveal:nth-child(5) { transition-delay: .5s; }
+    .reveal:nth-child(6) { transition-delay: .6s; }
+
+    /* ═══════════════════════════════════════════════════
+       5 — SOLUÇÃO  (6 navy cards in grid)
+       ═══════════════════════════════════════════════════ */
+    #solucao {
+      padding: 120px 32px 200px;
+      background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-deepest) 100%);
+      color: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+    #solucao::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -15%;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(241,222,170,.08), transparent 70%);
+      pointer-events: none;
+    }
+    .sol-wrap { max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; }
+    .sol-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    .sol-head h2 {
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--paper);
+      margin-top: 20px;
+    }
+    .sol-head h2 em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+    .sol-head p {
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: rgba(250,245,232,.7);
+      max-width: 420px;
+      padding-bottom: 8px;
+    }
+
+    .grid-solucoes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .grid-solucoes .card {
+      background: #00254d;
+      border-radius: 32px;
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      min-height: 186px;
+      height: auto;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+      transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1), background .35s, border-color .35s, box-shadow .35s;
+    }
+    .grid-solucoes .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 90% 10%, rgba(241,222,170,.10), transparent 60%);
+      opacity: 0;
+      transition: opacity .4s;
+      pointer-events: none;
+    }
+    .grid-solucoes .card:hover {
+      background: #0a3368;
+      border-color: rgba(241,222,170,.22);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.35);
+    }
+    .grid-solucoes .card:hover::after { opacity: 1; }
+    .grid-solucoes .card-number {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 72px;
+      color: #365995;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .grid-solucoes .card-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #e1c793;
+      margin: 0 0 8px 0;
+    }
+    .grid-solucoes .card-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.5;
+      color: #f7f6f5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       FLOATING ELEMENT (between Solução and Processo)
+       ═══════════════════════════════════════════════════ */
+    .floater-zone {
+      position: relative;
+      height: 0;
+      max-width: var(--max);
+      margin: 0 auto;
+      z-index: 5;
+    }
+    .floater {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 22px 56px;
+      background: var(--gold);
+      border-radius: 100px;
+      text-align: center;
+      box-shadow:
+        0 0 0 1px rgba(241,222,170,.5),
+        0 0 60px rgba(241,222,170,.55),
+        0 24px 60px rgba(241,222,170,.35),
+        0 32px 80px rgba(10,15,31,.18);
+      will-change: transform;
+      transition: box-shadow .5s;
+      animation: floaterGlow 4.5s ease-in-out infinite;
+      max-width: 88vw;
+    }
+    @keyframes floaterGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 0 1px rgba(241,222,170,.5),
+          0 0 60px rgba(241,222,170,.5),
+          0 24px 60px rgba(241,222,170,.3),
+          0 32px 80px rgba(10,15,31,.18);
+      }
+      50% {
+        box-shadow:
+          0 0 0 1px rgba(241,222,170,.7),
+          0 0 80px rgba(241,222,170,.7),
+          0 32px 80px rgba(241,222,170,.45),
+          0 40px 100px rgba(10,15,31,.22);
+      }
+    }
+    .floater-title {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.4vw, 30px);
+      color: var(--navy-deep);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .floater-sub {
+      font-size: 13px;
+      color: var(--navy);
+      line-height: 1.4;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       6 — PROCESSO (accordion)
+       ═══════════════════════════════════════════════════ */
+    #processo {
+      padding: 140px 32px 110px;
+      background: var(--cream);
+    }
+    .proc-wrap { max-width: var(--max); margin: 0 auto; }
+    .acc {
+      border-top: 1px solid var(--hair);
+      margin-top: 16px;
+    }
+    .acc-item {
+      border-bottom: 1px solid var(--hair);
+      transition: background .3s;
+    }
+    .acc-head {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 32px;
+      padding: 26px 8px;
+      cursor: pointer;
+      align-items: center;
+    }
+    .acc-num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--text-muted);
+      transition: color .3s;
+    }
+    .acc-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 500;
+      font-size: clamp(20px, 2.2vw, 28px);
+      color: var(--navy-deep);
+      letter-spacing: -0.025em;
+    }
+    .acc-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--hair);
+      display: grid; place-items: center;
+      color: var(--navy-deep);
+      transition: background .3s, color .3s, border-color .3s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .acc-item.open .acc-icon {
+      background: var(--gold);
+      color: var(--navy-deep);
+      border-color: var(--gold);
+    }
+    .acc-item.open .acc-num { color: var(--gold-deep); }
+
+    .acc-item:hover { background: #ece3cc; }
+    .acc-item:hover .acc-num { color: #7a5c2e; }
+    .acc-item:hover .acc-title { color: var(--navy-deepest); }
+    .acc-item:hover .acc-icon {
+      border-color: #7a5c2e;
+      color: #7a5c2e;
+    }
+
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .6s cubic-bezier(.2,.8,.2,1);
+    }
+    .acc-body-inner {
+      padding: 0 8px 34px 112px;
+      max-width: 880px;
+    }
+    .acc-body p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       7 — DIFERENCIAL  (refined comparison)
+       ═══════════════════════════════════════════════════ */
+    #diferencial {
+      padding: 110px 32px;
+      background: var(--paper);
+    }
+    .dif-wrap { max-width: var(--max); margin: 0 auto; }
+    .cmp {
+      background: var(--paper);
+      border: 1px solid var(--hair);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(10,15,31,.06);
+    }
+    .cmp-header {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      padding: 24px 32px;
+      background: var(--navy-deep);
+      gap: 20px;
+      align-items: center;
+    }
+    .cmp-col-h {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cmp-col-h .h-tag {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      font-weight: 500;
+    }
+    .cmp-col-h .h-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cmp-col-h.spa .h-tag { color: var(--gold); }
+    .cmp-col-h.spa .h-name { color: var(--gold); }
+    .cmp-col-h .ico-pill {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 11px;
+    }
+    .cmp-col-h.spa .ico-pill { background: var(--gold); color: var(--navy-deep); }
+    .cmp-col-h.warn .ico-pill { background: rgba(255,255,255,.12); color: var(--paper); }
+    .cmp-col-h.bad .ico-pill { background: rgba(255,255,255,.06); color: rgba(255,255,255,.4); }
+
+    .cmp-row {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      padding: 22px 32px;
+      gap: 20px;
+      align-items: center;
+      border-top: 1px solid var(--hair);
+      transition: background .3s;
+    }
+    .cmp-row:hover { background: var(--cream); }
+    .cmp-row .cmp-crit {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--navy-deep);
+      letter-spacing: -0.015em;
+    }
+    .cmp-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+    }
+    .cmp-cell .icn {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+    .cmp-cell.good { color: var(--navy-deep); font-weight: 500; }
+    .cmp-cell.good .icn { background: var(--gold); color: var(--navy-deep); }
+    .cmp-cell.warn { color: var(--text-body); }
+    .cmp-cell.warn .icn { background: rgba(10,15,31,.08); color: var(--text-muted); }
+    .cmp-cell.bad { color: var(--text-muted); }
+    .cmp-cell.bad .icn { background: rgba(10,15,31,.05); color: var(--text-muted); opacity: .7; }
+
+    /* highlight SPA column */
+    .cmp-row > *:nth-child(2),
+    .cmp-header > *:nth-child(2) {
+      position: relative;
+    }
+    .cmp-spa-bg {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: calc((100% - 32px) / 4.4 * 1.4 + 32px);
+      width: calc((100% - 32px) / 4.4);
+      background: rgba(241,222,170,.08);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       8 — EQUIPE
+       ═══════════════════════════════════════════════════ */
+    #equipe {
+      padding: 120px 32px;
+      background: var(--cream);
+    }
+    .team-wrap { max-width: var(--max); margin: 0 auto; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .team-card {
+      background: var(--paper);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+    }
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 56px rgba(10,15,31,.1);
+    }
+    .team-photo {
+      height: 360px;
+      position: relative;
+      /* SUBSTITUIR por foto profissional real */
+      background: linear-gradient(160deg, var(--navy-light) 0%, var(--navy-deep) 100%);
+      display: grid; place-items: center;
+    }
+    .team-photo-ph {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 88px;
+      font-weight: 500;
+      color: rgba(241,222,170,.4);
+      letter-spacing: -0.05em;
+    }
+    .team-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(241,222,170,.15), transparent 60%);
+    }
+    .team-info { padding: 24px 24px 28px; }
+    .team-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--navy-deep);
+      letter-spacing: -0.02em;
+    }
+    .team-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .team-bio {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--hair);
+    }
+    .team-soc { display: flex; gap: 8px; }
+    .team-soc a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--hair);
+      display: grid; place-items: center;
+      color: var(--text-muted);
+      transition: all .25s;
+    }
+    .team-soc a:hover {
+      background: var(--navy-deep);
+      border-color: var(--navy-deep);
+      color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       9 — BENEFÍCIOS (Resultados)
+       ═══════════════════════════════════════════════════ */
+    #beneficios {
+      padding: 110px 32px;
+      background: var(--paper);
+    }
+    .ben-wrap { max-width: var(--max); margin: 0 auto; }
+    .ben-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--hair);
+    }
+    .ben-card {
+      padding: 36px 32px 36px 0;
+      border-right: 1px solid var(--hair);
+      border-bottom: 1px solid var(--hair);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: background .3s;
+    }
+    .ben-card:nth-child(3n) { border-right: none; }
+    .ben-card:nth-child(n+4) { padding-top: 36px; }
+    .ben-card:hover { background: var(--cream); }
+    .ben-num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--gold-deep);
+    }
+    .ben-card h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 21px;
+      font-weight: 500;
+      color: var(--navy-deep);
+      letter-spacing: -0.02em;
+    }
+    .ben-card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       10 — CTA FINAL  (text overlay on image, parallax, glow)
+       ═══════════════════════════════════════════════════ */
+    #cta-final {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--navy-deepest);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+    }
+    .cta-media {
+      position: absolute;
+      inset: -8% 0;
+      height: 116%;
+      will-change: transform;
+      z-index: 0;
+      overflow: hidden;
+      background: var(--navy-deepest);
+    }
+    .cta-media video,
+    .cta-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+    .cta-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(6,18,58,.45) 0%, transparent 45%, rgba(6,18,58,.88) 100%),
+        radial-gradient(ellipse at 40% 75%, rgba(241,222,170,.08), transparent 55%);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      padding: 110px 0 90px;
+    }
+    .cta-eye { margin-bottom: 28px; }
+    .cta-content h2 {
+      font-size: clamp(46px, 7.5vw, 110px);
+      font-weight: 500;
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      color: var(--paper);
+      max-width: 1100px;
+      margin-bottom: 36px;
+    }
+    .cta-content h2 em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+    .cta-bottom {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) auto;
+      gap: 48px;
+      align-items: end;
+      margin-top: 28px;
+    }
+    .cta-bottom p {
+      font-size: 15px;
+      color: rgba(250,245,232,.78);
+      line-height: 1.65;
+      max-width: 540px;
+    }
+    .cta-bottom p strong { color: var(--paper); font-weight: 600; }
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       11 — FOOTER
+       ═══════════════════════════════════════════════════ */
+    #ft {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 80px 32px 40px;
+      position: relative;
+    }
+    .ft-wrap { max-width: var(--max); margin: 0 auto; }
+    .ft-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--hair-light);
+    }
+    .ft-brand .brand-mark { background: var(--gold); color: var(--ink); }
+    .ft-brand .brand-name { color: var(--paper); }
+    .ft-brand .brand-tag { color: rgba(250,245,232,.5); }
+    .ft-tagline {
+      margin-top: 20px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: rgba(250,245,232,.55);
+      max-width: 320px;
+    }
+    .ft-col h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(250,245,232,.4);
+      margin-bottom: 18px;
+    }
+    .ft-links { display: flex; flex-direction: column; gap: 10px; }
+    .ft-links a {
+      font-size: 14px;
+      color: rgba(250,245,232,.72);
+      transition: color .2s;
+    }
+    .ft-links a:hover { color: var(--gold); }
+    .ft-contact { display: flex; flex-direction: column; gap: 12px; }
+    .ft-ct {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 13.5px;
+      color: rgba(250,245,232,.7);
+      line-height: 1.5;
+    }
+    .ft-ct svg { color: var(--gold); flex-shrink: 0; margin-top: 3px; }
+    .ft-soc { margin-top: 22px; display: flex; gap: 8px; }
+    .ft-soc a {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--hair-light);
+      display: grid; place-items: center;
+      color: rgba(250,245,232,.65);
+      transition: all .25s;
+    }
+    .ft-soc a:hover {
+      background: var(--gold); border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    .ft-mark {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 500;
+      font-size: clamp(80px, 18vw, 240px);
+      line-height: 0.85;
+      letter-spacing: -0.06em;
+      color: rgba(241,222,170,.07);
+      margin: 30px 0 -20px;
+      pointer-events: none;
+      user-select: none;
+      text-align: center;
+    }
+
+    .ft-bot {
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .ft-copy {
+      font-size: 12px;
+      color: rgba(250,245,232,.4);
+      letter-spacing: -0.005em;
+    }
+    .ft-legal { display: flex; gap: 18px; }
+    .ft-legal a {
+      font-size: 12px;
+      color: rgba(250,245,232,.4);
+      transition: color .2s;
+    }
+    .ft-legal a:hover { color: var(--gold); }
+
+    .to-top {
+      position: absolute;
+      bottom: 36px;
+      left: 32px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--hair-light);
+      background: transparent;
+      color: var(--paper);
+      display: grid; place-items: center;
+      cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .to-top:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+      transform: translateY(-3px);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       FLOATING WHATSAPP
+       ═══════════════════════════════════════════════════ */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 9999;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,.4);
+      animation: wa-ring 3.5s ease-in-out infinite;
+      transition: transform .3s;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    @keyframes wa-ring {
+      0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,.4); }
+      50% { box-shadow: 0 8px 24px rgba(37,211,102,.4), 0 0 0 14px rgba(37,211,102,.08); }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .hd-nav { display: none; }
+      .burger { display: block; }
+      .hd-in { grid-template-columns: auto 1fr auto; }
+      .hd-cta { display: none; }
+
+      .hero-content { grid-template-columns: 1fr; gap: 32px; align-items: start; padding: 130px 0 72px; }
+      .hero-side { padding-bottom: 0; max-width: 480px; }
+
+      .stats-row { grid-template-columns: 1fr; gap: 24px; }
+      .stat-block { gap: 22px; }
+
+      .sec-hd { grid-template-columns: 1fr; gap: 22px; }
+      .grid-problemas { grid-template-columns: 1fr; }
+      .problema-item { border-right: none; }
+
+      .sol-head { grid-template-columns: 1fr; gap: 22px; }
+      .grid-solucoes { grid-template-columns: 1fr; }
+
+      .cmp-header, .cmp-row { grid-template-columns: 1fr; gap: 4px; padding: 18px 22px; }
+      .cmp-spa-bg { display: none; }
+      .cmp-row .cmp-crit {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .ben-grid { grid-template-columns: repeat(2, 1fr); }
+      .ben-card:nth-child(3n) { border-right: 1px solid var(--hair); }
+      .ben-card:nth-child(2n) { border-right: none; }
+
+      .cta-bottom { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+      .cta-actions { justify-content: flex-start; }
+
+      .ft-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+
+      .floater-title { font-size: 22px; }
+      .floater { padding: 20px 36px; }
+    }
+
+    @media (max-width: 640px) {
+      #hd { top: 10px; left: 12px; right: 12px; }
+      .hd-in { padding: 10px 14px; }
+
+      #stats, #processo, #diferencial, #equipe, #beneficios, #ft { padding-left: 20px; padding-right: 20px; }
+      #stats { padding-top: 56px; padding-bottom: 56px; }
+      #processo { padding-top: 80px; padding-bottom: 56px; }
+      #diferencial { padding-top: 60px; padding-bottom: 60px; }
+      #equipe { padding-top: 70px; padding-bottom: 70px; }
+
+      .section-problemas { padding: 60px 0; }
+      .problema-item { padding: 28px 20px; gap: 16px; }
+      .problema-numero { font-size: 44px; min-width: 44px; }
+      #solucao { padding: 80px 20px 140px; }
+
+      .hero-content { padding: 110px 0 56px; min-height: auto; gap: 20px; }
+      .hero-eye { display: none; }
+      .hero-h1 { max-width: 100%; }
+
+      .stat-num { font-size: 58px; }
+      .stats-copy { margin-bottom: 32px; }
+      .sec-hd { margin-bottom: 32px; }
+
+      .prob-item { padding: 22px 24px; }
+      .grid-solucoes { gap: 14px; }
+      .grid-solucoes .card { padding: 22px 24px; min-height: unset; }
+      .grid-solucoes .card-number { font-size: 52px; }
+      .grid-solucoes .card-title { font-size: 22px; }
+
+      .acc-head { grid-template-columns: 50px 1fr auto; gap: 20px; padding: 22px 4px; }
+      .acc-body-inner { padding-left: 50px; padding-right: 4px; }
+
+      .team-grid, .ben-grid { grid-template-columns: 1fr; }
+      .ben-card { border-right: none !important; padding: 30px 0; }
+
+      .ft-top { grid-template-columns: 1fr; }
+      .ft-mark { margin: 16px 0 -10px; }
+
+      .cta-content { padding: 90px 0 70px; }
+      .cta-actions { flex-direction: column; align-items: stretch; }
+      .cta-actions .pill { justify-content: center; }
+      .floater-zone { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       TOUCH HOVER — ativação por scroll (JS adiciona .touch-in)
+       ═══════════════════════════════════════════════════ */
+    @media (hover: none) {
+      /* Desabilita :hover CSS em touch — JS controla via .touch-in */
+      .problema-item:hover { background: var(--prob-bg); transform: none; }
+      .problema-item:hover::before { background: transparent; }
+      .problema-item:hover .problema-numero { color: var(--prob-numero); }
+
+      .grid-solucoes .card:hover {
+        background: #00254d; border-color: transparent;
+        transform: none; box-shadow: none;
+      }
+      .grid-solucoes .card:hover::after { opacity: 0; }
+
+      .team-card:hover { transform: none; box-shadow: none; }
+
+      .ben-card:hover { background: transparent; }
+
+      .cmp-row:hover { background: transparent; }
+
+      .acc-item:hover { background: transparent; }
+      .acc-item:hover .acc-num { color: var(--text-muted); }
+      .acc-item:hover .acc-title { color: var(--navy-deep); }
+      .acc-item:hover .acc-icon { border-color: var(--hair); color: var(--navy-deep); }
+
+      /* Estados .touch-in — aplicados via JS ao atingir o centro da tela */
+      .problema-item.touch-in { background: var(--prob-bg-hover); transform: translateX(6px); }
+      .problema-item.touch-in::before { background: var(--prob-linha-destaque); }
+      .problema-item.touch-in .problema-numero { color: var(--prob-numero-hover); }
+
+      .grid-solucoes .card.touch-in {
+        background: #0a3368;
+        border-color: rgba(241,222,170,.22);
+        transform: translateY(-3px);
+        box-shadow: 0 16px 48px rgba(0,0,0,.35);
+      }
+      .grid-solucoes .card.touch-in::after { opacity: 1; }
+
+      .team-card.touch-in {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 56px rgba(10,15,31,.1);
+      }
+
+      .ben-card.touch-in { background: var(--cream); }
+
+      .cmp-row.touch-in { background: var(--cream); }
+
+      .acc-item.touch-in { background: #ece3cc; }
+      .acc-item.touch-in .acc-num { color: #7a5c2e; }
+      .acc-item.touch-in .acc-title { color: var(--navy-deepest); }
+      .acc-item.touch-in .acc-icon { border-color: #7a5c2e; color: #7a5c2e; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═════ SVG SYMBOLS ═════ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+  <symbol id="i-li" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.44 2 2 0 0 1 3.54 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6.29 6.29l.89-.89a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
+</svg>
+
+<!-- ═════════════════════════════════════════════════════
+     1 — HEADER
+═════════════════════════════════════════════════════ -->
+<header id="hd">
+  <div class="hd-in">
+    <a href="#top" class="brand">
+      <!-- LOGO: /assets/logo-spa.svg -->
+      <div class="brand-mark">SPA</div>
+      <div class="brand-text">
+        <span class="brand-name">Síndicos Profissionais</span>
+        <span class="brand-tag">Gestão Condominial · RJ</span>
+      </div>
+    </a>
+
+    <nav class="hd-nav">
+      <a href="#top" class="active">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#solucao">Serviços</a>
+      <a href="#processo">Processo</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#ft">Contato</a>
+    </nav>
+
+    <!-- WHATSAPP: substituir 5521999999999 pelo número real -->
+    <a href="https://wa.me/5521999912390?text=Ol%C3%A1!%20Vi%20o%20site%20da%20SPA%20e%20gostaria%20de%20saber%20mais."
+       target="_blank" rel="noopener" class="pill pill-gold-glow hd-cta">
+      Falar no WhatsApp
+      <svg width="14" height="14"><use href="#i-arrow"/></svg>
+    </a>
+
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="hd-curtain" aria-hidden="true"></div>
+
+<div class="mob" id="mob">
+  <a href="#sobre"    onclick="closeMob()">Sobre</a>
+  <a href="#solucao"  onclick="closeMob()">Serviços</a>
+  <a href="#processo" onclick="closeMob()">Processo</a>
+  <a href="#equipe"   onclick="closeMob()">Equipe</a>
+  <a href="#ft"       onclick="closeMob()">Contato</a>
+  <a href="https://wa.me/5521999912390" target="_blank" rel="noopener" class="pill pill-gold-glow" onclick="closeMob()">
+    Falar no WhatsApp <svg width="14" height="14"><use href="#i-arrow"/></svg>
+  </a>
+</div>
+
+<!-- ═════════════════════════════════════════════════════
+     2 — HERO  (text overlay + parallax + glow CTA)
+═════════════════════════════════════════════════════ -->
+<section id="hero" id="top">
+  <!-- PLACEHOLDER PARA IMAGEM/VÍDEO REAL:
+       Substituir o conteúdo de .hero-media por:
+       <img src="/assets/hero-condominio.jpg" alt="...">
+       OU
+       <video autoplay muted loop playsinline poster="...">
+         <source src="/assets/hero.mp4" type="video/mp4">
+       </video>
+       O efeito parallax já está aplicado via JS no elemento .hero-media -->
+  <div class="hero-media" data-parallax="0.35">
+      <video autoplay muted loop playsinline>
+    <source src="/assets/video/herovideo.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-content">
+    <span class="eyebrow light hero-eye rise">Ilha do Governador · 10+ anos</span>
+
+    <h1 class="hero-h1 rise" style="transition-delay:.1s">
+      Gestão <em>profissional</em><br>
+      para o seu<br>
+      condomínio.
+    </h1>
+
+    <div class="hero-side rise" style="transition-delay:.3s">
+      <p class="hero-intro">
+        Mais de <strong>10 anos</strong> de gestão profissional na Ilha do Governador com transparência, imparcialidade e resultados comprovados.
+      </p>
+      <a href="#cta-final" class="pill pill-gold-glow pill-lg">
+        Solicitar Proposta
+        <svg width="14" height="14"><use href="#i-arrow"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     3 — STATS
+═════════════════════════════════════════════════════ -->
+<section id="stats">
+  <div class="stats-wrap" id="sobre">
+    <span class="eyebrow stats-eye rise">Ilha do Governador · 10+ anos</span>
+    <p class="stats-copy rise" style="transition-delay:.1s">
+      Administrar um condomínio exige mais do que boa vontade. Exige <em>método</em>. Na SPA, entregamos <strong>gestão estruturada, imparcial e estratégica</strong> sem trocar a sua administradora, sem atritos, sem ruído.
+    </p>
+
+    <div class="stats-row">
+      <div class="stat-block rise">
+        <div class="stat-num"><span class="count" data-target="10">0</span><span class="suffix">+</span></div>
+        <div>
+          <div class="stat-info-title">Anos na Ilha do Governador</div>
+          <div class="stat-info-desc">Experiência consolidada em gestão condominial com método e comprometimento profissional.</div>
+        </div>
+      </div>
+      <div class="stat-block rise" style="transition-delay:.1s">
+        <div class="stat-num"><span class="count" data-target="50">0</span><span class="suffix">+</span></div>
+        <div>
+          <div class="stat-info-title">Condomínios atendidos</div>
+          <div class="stat-info-desc">Gestão completa, transparente e eficiente, alinhada aos interesses reais dos moradores.</div>
+        </div>
+      </div>
+      <div class="stat-block rise" style="transition-delay:.2s">
+        <div class="stat-num">24<span class="slash">/</span>7</div>
+        <div>
+          <div class="stat-info-title">Disponibilidade e respaldo</div>
+          <div class="stat-info-desc">Atendimento dedicado com respaldo no Código Civil (Art. 1.347) e imparcialidade total.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     4 — PROBLEMAS (Sintomas)
+═════════════════════════════════════════════════════ -->
+<section class="section-problemas">
+  <div class="container">
+
+    <div class="sec-hd">
+      <div>
+        <span class="eyebrow">A realidade de muitos condomínios</span>
+        <h2 class="rise">
+          Sintomas de uma<br>
+          gestão <em>sem método</em>.
+        </h2>
+      </div>
+      <p class="rise" style="transition-delay:.1s">
+        Reconheça a realidade de tantos condomínios antes de descobrir a solução. Todos estes problemas têm uma origem comum — e uma única resposta profissional.
+      </p>
+    </div>
+
+    <div class="grid-problemas">
+
+      <div class="problema-item reveal">
+        <div class="problema-numero">01</div>
+        <div class="problema-conteudo">
+          <h3>Desorganização administrativa</h3>
+          <p>Documentos perdidos, prazos esquecidos e comunicação confusa.</p>
+        </div>
+      </div>
+
+      <div class="problema-item reveal">
+        <div class="problema-numero">02</div>
+        <div class="problema-conteudo">
+          <h3>Conflitos sem solução</h3>
+          <p>Discussões recorrentes sem mediação profissional.</p>
+        </div>
+      </div>
+
+      <div class="problema-item reveal">
+        <div class="problema-numero">03</div>
+        <div class="problema-conteudo">
+          <h3>Gestão financeira opaca</h3>
+          <p>Falta de clareza nas contas e desconfiança dos moradores.</p>
+        </div>
+      </div>
+
+      <div class="problema-item reveal">
+        <div class="problema-numero">04</div>
+        <div class="problema-conteudo">
+          <h3>Obras sem controle</h3>
+          <p>Fornecedores inconsistentes e custos fora do previsto.</p>
+        </div>
+      </div>
+
+      <div class="problema-item reveal">
+        <div class="problema-numero">05</div>
+        <div class="problema-conteudo">
+          <h3>Síndico sobrecarregado</h3>
+          <p>Falta de tempo, preparo e suporte para gestão.</p>
+        </div>
+      </div>
+
+      <div class="problema-item reveal">
+        <div class="problema-numero">06</div>
+        <div class="problema-conteudo">
+          <h3>Falta de transparência</h3>
+          <p>Moradores sem visibilidade sobre decisões importantes.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     5 — SOLUÇÃO  (6 navy cards in grid)
+═════════════════════════════════════════════════════ -->
+<section id="solucao">
+  <div class="sol-wrap">
+    <div class="sol-head">
+      <div>
+        <span class="eyebrow light">A Resposta</span>
+        <h2 class="rise">
+          Gestão profissional,<br>
+          <em>do jeito certo</em>.
+        </h2>
+      </div>
+      <p class="rise" style="transition-delay:.1s">
+        Administrar um condomínio exige tempo, conhecimento jurídico e dedicação constante. O síndico profissional atua de forma estruturada, imparcial e estratégica. Sem vínculos pessoais com os moradores, garante decisões mais justas e sem conflitos de interesse.
+      </p>
+    </div>
+
+    <div class="grid-solucoes">
+      <div class="card rise">
+        <div class="card-number">01</div>
+        <div class="card-content">
+          <h3 class="card-title">Gestão Administrativa</h3>
+          <p class="card-text">Administração geral do condomínio, condução de assembleias, cumprimento de normas e representação legal.</p>
+        </div>
+      </div>
+      <div class="card rise" style="transition-delay:.05s">
+        <div class="card-number">02</div>
+        <div class="card-content">
+          <h3 class="card-title">Gestão Financeira</h3>
+          <p class="card-text">Controle de receitas e despesas, prestação de contas transparente e planejamento para redução de custos.</p>
+        </div>
+      </div>
+      <div class="card rise" style="transition-delay:.1s">
+        <div class="card-number">03</div>
+        <div class="card-content">
+          <h3 class="card-title">Gestão de Pessoas</h3>
+          <p class="card-text">Supervisão de funcionários e terceirizados, organização de rotinas e gestão de contratos.</p>
+        </div>
+      </div>
+      <div class="card rise" style="transition-delay:.15s">
+        <div class="card-number">04</div>
+        <div class="card-content">
+          <h3 class="card-title">Mediação de Conflitos</h3>
+          <p class="card-text">Intermediação imparcial entre moradores, promovendo decisões equilibradas e convivência harmoniosa.</p>
+        </div>
+      </div>
+      <div class="card rise" style="transition-delay:.2s">
+        <div class="card-number">05</div>
+        <div class="card-content">
+          <h3 class="card-title">Obras & Manutenção</h3>
+          <p class="card-text">Acompanhamento de obras, fiscalização de fornecedores e análise comparativa de orçamentos.</p>
+        </div>
+      </div>
+      <div class="card rise" style="transition-delay:.25s">
+        <div class="card-number">06</div>
+        <div class="card-content">
+          <h3 class="card-title">Atendimento & Governança</h3>
+          <p class="card-text">Suporte ágil aos moradores com comunicação clara, aliado a gestão transparente e respaldo legal (Art. 1.347).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     FLOATING ELEMENT (between Solução and Processo)
+═════════════════════════════════════════════════════ -->
+<div class="floater-zone">
+  <div class="floater" data-floater>
+    <div class="floater-title">Soluções completas,</div>
+    <div class="floater-sub">mais organização, transparência e eficiência na gestão.</div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════════════════════
+     6 — PROCESSO (accordion — item 02 sem imagem)
+═════════════════════════════════════════════════════ -->
+<section id="processo">
+  <div class="proc-wrap">
+    <div class="sec-hd">
+      <div>
+        <span class="eyebrow">Como Trabalhamos</span>
+        <h2 class="rise">
+          Um processo claro,<br>
+          <em>passo a passo</em>.
+        </h2>
+      </div>
+      <p class="rise" style="transition-delay:.1s">
+        Um método simples e transparente para conduzir o seu condomínio de uma gestão reativa para uma gestão profissional, com resultados visíveis desde a primeira semana.
+      </p>
+    </div>
+
+    <div class="acc">
+      <div class="acc-item">
+        <div class="acc-head">
+          <div class="acc-num">01</div>
+          <div class="acc-title">Diagnóstico inicial</div>
+          <button class="acc-icon" aria-label="Expandir">
+            <svg width="14" height="14"><use href="#i-plus"/></svg>
+          </button>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Escutamos a real situação do condomínio — problemas administrativos, financeiros, conflitos entre moradores e histórico de obras. Uma conversa honesta para entender onde estamos e onde podemos chegar. Sem custo e sem compromisso.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <div class="acc-num">02</div>
+          <div class="acc-title">Plano de ação personalizado</div>
+          <button class="acc-icon" aria-label="Expandir">
+            <svg width="14" height="14"><use href="#i-plus"/></svg>
+          </button>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Com base no diagnóstico, desenhamos um plano sob medida que prioriza as urgências, estrutura os processos e define responsabilidades. Integramos nossa atuação com a administradora já existente — sem trocar, sem ruído. O condomínio mantém continuidade e ganha profissionalização.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <div class="acc-num">03</div>
+          <div class="acc-title">Implementação & gestão ativa</div>
+          <button class="acc-icon" aria-label="Expandir">
+            <svg width="14" height="14"><use href="#i-plus"/></svg>
+          </button>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Assumimos a condução: assembleias, prestação de contas, mediação de conflitos, fiscalização de fornecedores e comunicação com moradores. Você acompanha tudo com total transparência.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <div class="acc-num">04</div>
+          <div class="acc-title">Otimização & valorização contínua</div>
+          <button class="acc-icon" aria-label="Expandir">
+            <svg width="14" height="14"><use href="#i-plus"/></svg>
+          </button>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Melhoria contínua: revisão de contratos, planejamento preventivo, indicadores de satisfação e valorização patrimonial. Gestão profissional é um processo vivo, não um projeto com fim.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     7 — DIFERENCIAL (refined comparison)
+═════════════════════════════════════════════════════ -->
+<section id="diferencial">
+  <div class="dif-wrap">
+    <div class="sec-hd">
+      <div>
+        <span class="eyebrow">Por Que a SPA</span>
+        <h2 class="rise">
+          Veja a diferença<br>
+          <em>lado a lado</em>.
+        </h2>
+      </div>
+      <p class="rise" style="transition-delay:.1s">
+        Compare o que você obtém com a SPA, com um síndico voluntário e com a ausência de gestão profissional. A diferença é mais clara do que parece.
+      </p>
+    </div>
+
+    <div class="cmp rise">
+      <div class="cmp-header">
+        <div></div>
+        <div class="cmp-col-h spa">
+          <span class="h-tag">A Escolha Certa</span>
+          <span class="h-name">
+            <span class="ico-pill"><svg width="11" height="11"><use href="#i-check"/></svg></span>
+            SPA
+          </span>
+        </div>
+        <div class="cmp-col-h warn">
+          <span class="h-tag">Alternativa Limitada</span>
+          <span class="h-name">
+            <span class="ico-pill"><svg width="11" height="11"><use href="#i-warn"/></svg></span>
+            Síndico Voluntário
+          </span>
+        </div>
+        <div class="cmp-col-h bad">
+          <span class="h-tag">Sem Estrutura</span>
+          <span class="h-name">
+            <span class="ico-pill"><svg width="11" height="11"><use href="#i-x"/></svg></span>
+            Sem Gestão
+          </span>
+        </div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="cmp-crit">Disponibilidade</div>
+        <div class="cmp-cell good"><span class="icn"><svg width="12" height="12"><use href="#i-check"/></svg></span> 24/7</div>
+        <div class="cmp-cell warn"><span class="icn"><svg width="12" height="12"><use href="#i-warn"/></svg></span> Limitada</div>
+        <div class="cmp-cell bad"><span class="icn"><svg width="12" height="12"><use href="#i-x"/></svg></span> Nenhuma</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-crit">Imparcialidade</div>
+        <div class="cmp-cell good"><span class="icn"><svg width="12" height="12"><use href="#i-check"/></svg></span> Total</div>
+        <div class="cmp-cell warn"><span class="icn"><svg width="12" height="12"><use href="#i-warn"/></svg></span> Parcial</div>
+        <div class="cmp-cell bad"><span class="icn"><svg width="12" height="12"><use href="#i-x"/></svg></span> Nenhuma</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-crit">Conhecimento técnico</div>
+        <div class="cmp-cell good"><span class="icn"><svg width="12" height="12"><use href="#i-check"/></svg></span> Especializado</div>
+        <div class="cmp-cell warn"><span class="icn"><svg width="12" height="12"><use href="#i-warn"/></svg></span> Informal</div>
+        <div class="cmp-cell bad"><span class="icn"><svg width="12" height="12"><use href="#i-x"/></svg></span> Nenhum</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-crit">Controle financeiro</div>
+        <div class="cmp-cell good"><span class="icn"><svg width="12" height="12"><use href="#i-check"/></svg></span> Profissional</div>
+        <div class="cmp-cell warn"><span class="icn"><svg width="12" height="12"><use href="#i-warn"/></svg></span> Amador</div>
+        <div class="cmp-cell bad"><span class="icn"><svg width="12" height="12"><use href="#i-x"/></svg></span> Ausente</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-crit">Mediação de conflitos</div>
+        <div class="cmp-cell good"><span class="icn"><svg width="12" height="12"><use href="#i-check"/></svg></span> Estruturada</div>
+        <div class="cmp-cell warn"><span class="icn"><svg width="12" height="12"><use href="#i-warn"/></svg></span> Improvisada</div>
+        <div class="cmp-cell bad"><span class="icn"><svg width="12" height="12"><use href="#i-x"/></svg></span> Ausente</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-crit">Respaldo legal</div>
+        <div class="cmp-cell good"><span class="icn"><svg width="12" height="12"><use href="#i-check"/></svg></span> Art. 1.347</div>
+        <div class="cmp-cell warn"><span class="icn"><svg width="12" height="12"><use href="#i-warn"/></svg></span> Limitado</div>
+        <div class="cmp-cell bad"><span class="icn"><svg width="12" height="12"><use href="#i-x"/></svg></span> Sem proteção</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     8 — EQUIPE
+═════════════════════════════════════════════════════ -->
+<section id="equipe">
+  <div class="team-wrap">
+    <div class="sec-hd">
+      <div>
+        <span class="eyebrow">Nossa Equipe</span>
+        <h2 class="rise">
+          Profissionais que cuidam<br>
+          do seu <em>patrimônio</em>.
+        </h2>
+      </div>
+      <p class="rise" style="transition-delay:.1s">
+        Conheça os síndicos profissionais que garantem excelência na gestão do seu condomínio — experiência, imparcialidade e proximidade em cada decisão.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      <!-- SUBSTITUIR: /assets/equipe-profissional-1.jpg -->
+      <!-- NOMES PROFISSIONAIS: substituir nomes e bios reais -->
+      <div class="team-card rise">
+        <div class="team-photo">
+          <span class="team-photo-ph">01</span>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Nome do Profissional</div>
+          <div class="team-role">Síndico Profissional</div>
+          <p class="team-bio">Especialista em gestão condominial, organização administrativa e resolução de conflitos com atuação na Ilha do Governador.</p>
+          <div class="team-soc">
+            <a href="https://wa.me/5521999912390" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="14" height="14"><use href="#i-wa"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="14" height="14"><use href="#i-ig"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="14" height="14"><use href="#i-li"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card rise" style="transition-delay:.1s">
+        <div class="team-photo" style="background:linear-gradient(160deg,var(--navy-soft) 0%,var(--navy-deep) 100%)">
+          <span class="team-photo-ph">02</span>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Nome do Profissional</div>
+          <div class="team-role">Síndica Profissional</div>
+          <p class="team-bio">Especialista em gestão condominial, organização administrativa e resolução de conflitos com atuação na Ilha do Governador.</p>
+          <div class="team-soc">
+            <a href="https://wa.me/5521999912390" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="14" height="14"><use href="#i-wa"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="14" height="14"><use href="#i-ig"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="14" height="14"><use href="#i-li"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card rise" style="transition-delay:.2s">
+        <div class="team-photo" style="background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deepest) 100%)">
+          <span class="team-photo-ph">03</span>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Nome do Profissional</div>
+          <div class="team-role">Síndico Profissional</div>
+          <p class="team-bio">Especialista em gestão condominial, organização administrativa e resolução de conflitos com atuação na Ilha do Governador.</p>
+          <div class="team-soc">
+            <a href="https://wa.me/5521999912390" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="14" height="14"><use href="#i-wa"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="14" height="14"><use href="#i-ig"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="14" height="14"><use href="#i-li"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     9 — BENEFÍCIOS (Resultados)
+═════════════════════════════════════════════════════ -->
+<!-- SEÇÃO BENEFÍCIOS REMOVIDA --><section id="beneficios" style="display:none">
+  <div class="ben-wrap">
+    <div class="sec-hd">
+      <div>
+        <span class="eyebrow">O Que Muda</span>
+        <h2 class="rise">
+          Resultados que<br>
+          <em>você sente no dia a dia</em>.
+        </h2>
+      </div>
+      <p class="rise" style="transition-delay:.1s">
+        Gestão profissional não é sobre adicionar complexidade — é sobre devolver simplicidade, clareza e tranquilidade para quem mora e para quem investe.
+      </p>
+    </div>
+
+    <div class="ben-grid">
+      <div class="ben-card rise">
+        <div class="ben-num">01</div>
+        <h3>Mais organização</h3>
+        <p>Processos estruturados, documentos organizados e comunicação clara para todos.</p>
+      </div>
+      <div class="ben-card rise" style="transition-delay:.05s">
+        <div class="ben-num">02</div>
+        <h3>Menos conflitos</h3>
+        <p>Mediação profissional que converte desgastes em convivência.</p>
+      </div>
+      <div class="ben-card rise" style="transition-delay:.1s">
+        <div class="ben-num">03</div>
+        <h3>Controle financeiro</h3>
+        <p>Contas auditáveis, gastos justificados e moradores que confiam na gestão.</p>
+      </div>
+      <div class="ben-card rise" style="transition-delay:.15s">
+        <div class="ben-num">04</div>
+        <h3>Comunicação eficiente</h3>
+        <p>Informação clara, rápida e acessível para todos os condôminos, sempre.</p>
+      </div>
+      <div class="ben-card rise" style="transition-delay:.2s">
+        <div class="ben-num">05</div>
+        <h3>Patrimônio valorizado</h3>
+        <p>Manutenção preventiva e obras bem geridas que aumentam o valor dos imóveis.</p>
+      </div>
+      <div class="ben-card rise" style="transition-delay:.25s">
+        <div class="ben-num">06</div>
+        <h3>Tranquilidade real</h3>
+        <p>Gestão profissional que tira o peso dos ombros de quem mora e de quem investe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     10 — CTA FINAL  (text overlay + parallax + glow)
+═════════════════════════════════════════════════════ -->
+<section id="cta-final">
+  <!-- PLACEHOLDER PARA IMAGEM/VÍDEO REAL:
+       Substituir o conteúdo de .cta-media por <img> ou <video> -->
+  <div class="cta-media" data-parallax="0.3">
+    <img src="assets/img/condominios.png" alt="Descrição da imagem">
+  </div>
+
+  <div class="cta-content">
+    <span class="eyebrow light cta-eye rise">Primeira Conversa Gratuita</span>
+    <h2 class="rise" style="transition-delay:.1s">
+      Dê o primeiro passo<br>
+      para uma <em>gestão de verdade</em>.
+    </h2>
+
+    <div class="cta-bottom rise" style="transition-delay:.2s">
+      <p>
+        Converse com a SPA. Explique a situação do seu condomínio e receba um diagnóstico honesto de como podemos ajudar — <strong>sem custo e sem obrigação</strong>. Atendemos condomínios na Ilha do Governador e região.
+      </p>
+      <div class="cta-actions">
+        <a href="#ft" class="pill pill-outline-light pill-lg">Solicitar Proposta</a>
+        <a href="https://wa.me/5521999912390?text=Ol%C3%A1!%20Vi%20o%20site%20da%20SPA%20e%20gostaria%20de%20saber%20mais."
+           target="_blank" rel="noopener" class="pill pill-gold-glow pill-lg">
+          Falar no WhatsApp
+          <svg width="14" height="14"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════
+     11 — FOOTER
+═════════════════════════════════════════════════════ -->
+<footer id="ft">
+  <div class="ft-wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <div class="brand" style="gap:12px">
+          <div class="brand-mark">SPA</div>
+          <div class="brand-text">
+            <span class="brand-name">Síndicos Profissionais</span>
+            <span class="brand-tag">Associados · RJ</span>
+          </div>
+        </div>
+        <p class="ft-tagline">
+          Gestão Profissional de Condomínios.<br>
+          10+ anos de experiência na Ilha do Governador, RJ.
+        </p>
+      </div>
+
+      <div class="ft-col">
+        <h4>Navegação</h4>
+        <div class="ft-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#problema">Problemas</a>
+          <a href="#solucao">Solução</a>
+          <a href="#processo">Processo</a>
+          <a href="#equipe">Equipe</a>
+        </div>
+      </div>
+
+      <div class="ft-col">
+        <h4>Contato</h4>
+        <div class="ft-contact">
+          <!-- NÚMERO A DEFINIR -->
+          <div class="ft-ct">
+            <svg width="14" height="14"><use href="#i-phone"/></svg>
+            (21) [NÚMERO A DEFINIR]
+          </div>
+          <!-- EMAIL a substituir -->
+          <div class="ft-ct">
+            <svg width="14" height="14"><use href="#i-mail"/></svg>
+            contato@spacondominios.com.br
+          </div>
+          <div class="ft-ct">
+            <svg width="14" height="14"><use href="#i-pin"/></svg>
+            Ilha do Governador<br>Rio de Janeiro — RJ
+          </div>
+        </div>
+        <div class="ft-soc">
+          <a href="https://wa.me/5521999912390" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="15" height="15"><use href="#i-wa"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="15" height="15"><use href="#i-ig"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="15" height="15"><use href="#i-li"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ft-bot">
+      <div class="ft-copy">
+        © 2025 SPA — Síndicos Profissionais Associados · CNPJ: [A DEFINIR]
+      </div>
+      <div class="ft-legal">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="14" height="14"><use href="#i-up"/></svg>
+  </button>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/5521999912390?text=Ol%C3%A1!%20Vi%20o%20site%20da%20SPA%20e%20gostaria%20de%20saber%20mais."
+   target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" style="color:white"><use href="#i-wa"/></svg>
+</a>
+
+<script>
+  /* ─── Hamburger ─── */
+  const burger = document.getElementById('burger');
+  const mob = document.getElementById('mob');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMob() {
+    burger.classList.remove('open');
+    mob.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ─── Swipe-up interativo para fechar menu mobile ─── */
+  let mobTouchStartY = 0;
+
+  mob.addEventListener('touchstart', e => {
+    mobTouchStartY = e.touches[0].clientY;
+    mob.style.transition = 'none'; // segue o dedo sem atraso
+  }, { passive: true });
+
+  mob.addEventListener('touchmove', e => {
+    const deltaY = mobTouchStartY - e.touches[0].clientY;
+    if (deltaY <= 0) return; // ignora movimento para baixo
+    const progress = Math.min(deltaY / window.innerHeight, 1);
+    mob.style.transform = `translateY(${-deltaY}px)`;
+    mob.style.opacity = String(Math.max(0, 1 - progress * 2.2));
+  }, { passive: true });
+
+  mob.addEventListener('touchend', e => {
+    const deltaY = mobTouchStartY - e.changedTouches[0].clientY;
+    const threshold = window.innerHeight * 0.25;
+
+    // reativa transição suave para o resultado
+    mob.style.transition = 'transform .38s cubic-bezier(.2,.8,.2,1), opacity .32s ease';
+
+    if (deltaY > threshold) {
+      // completa a saída animada e fecha
+      mob.style.transform = 'translateY(-100%)';
+      mob.style.opacity = '0';
+      setTimeout(() => {
+        closeMob();
+        mob.style.transition = '';
+        mob.style.transform = '';
+        mob.style.opacity = '';
+      }, 400);
+    } else {
+      // snap-back suave para posição original
+      mob.style.transform = '';
+      mob.style.opacity = '';
+      setTimeout(() => { mob.style.transition = ''; }, 400);
+    }
+  }, { passive: true });
+
+  /* ─── Reveal (scroll-based, seção Problemas) ─── */
+  const revealItems = document.querySelectorAll('.reveal');
+  function checkReveal() {
+    revealItems.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+        el.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  checkReveal();
+
+  /* ─── Rise ─── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.rise').forEach(el => io.observe(el));
+
+  /* ─── Count-up (cascade) ─── */
+  const statsCounters = document.querySelectorAll('#stats .count[data-target]');
+
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el, delay) {
+    const target = +el.dataset.target;
+    const duration = 1600;
+
+    setTimeout(() => {
+      let startTs = null;
+      function update(ts) {
+        if (!startTs) startTs = ts;
+        const pct = Math.min((ts - startTs) / duration, 1);
+        el.textContent = Math.floor(easeOutCubic(pct) * target);
+        if (pct < 1) requestAnimationFrame(update);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(update);
+    }, delay);
+  }
+
+  const statsObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        statsCounters.forEach((el, i) => animateCounter(el, i * 250));
+        document.querySelectorAll('#stats .rise').forEach(el => el.classList.add('active'));
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.6 });
+
+  const statsSection = document.querySelector('#stats');
+  if (statsSection) statsObserver.observe(statsSection);
+
+  /* ─── Accordion ─── */
+  document.querySelectorAll('.acc-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const item = head.parentElement;
+      const isOpen = item.classList.contains('open');
+      const body = item.querySelector('.acc-body');
+      const icon = item.querySelector('.acc-icon svg use');
+
+      item.parentElement.querySelectorAll('.acc-item.open').forEach(o => {
+        if (o !== item) {
+          o.classList.remove('open');
+          o.querySelector('.acc-body').style.maxHeight = '0';
+          o.querySelector('.acc-icon svg use').setAttribute('href', '#i-plus');
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('open');
+        body.style.maxHeight = '0';
+        icon.setAttribute('href', '#i-plus');
+      } else {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        icon.setAttribute('href', '#i-minus');
+      }
+    });
+  });
+
+  /* ─── Active nav ─── */
+  const navLinks = document.querySelectorAll('.hd-nav a');
+  const sectionIds = ['hero','sobre','solucao','processo','equipe','ft'];
+  const aio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(l => {
+          const href = l.getAttribute('href').replace('#','');
+          l.classList.toggle('active', href === id || (href === 'top' && id === 'hero'));
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) aio.observe(el);
+  });
+
+  /* Ativa "Contato" quando o scroll chega perto do fim da página */
+  window.addEventListener('scroll', () => {
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 80;
+    if (atBottom) {
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#ft'));
+    }
+  }, { passive: true });
+
+  /* ─── Parallax (image layers + floater) ─── */
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  const floater = document.querySelector('[data-floater]');
+
+  function updateParallax() {
+    const vh = window.innerHeight;
+
+    parallaxEls.forEach(el => {
+      const rect = el.parentElement.getBoundingClientRect();
+      const speed = parseFloat(el.dataset.parallax);
+      const sectionCenter = rect.top + rect.height / 2;
+      const distFromCenter = sectionCenter - vh / 2;
+      const offset = -distFromCenter * speed;
+      el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+
+    if (floater) {
+      const rect = floater.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const dist = (center - vh / 2);
+      // small subtle parallax — clamp ±18px
+      const offset = Math.max(-18, Math.min(18, -dist * 0.04));
+      floater.style.transform = `translate(-50%, calc(-50% + ${offset}px))`;
+    }
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateParallax);
+  updateParallax();
+
+  /* ─── Touch Hover — ativa .touch-in ao atingir o centro da tela ─── */
+  if (window.matchMedia('(hover: none)').matches) {
+    const touchEls = document.querySelectorAll(
+      '.problema-item, .grid-solucoes .card, .team-card, .ben-card, .cmp-row, .acc-item'
+    );
+
+    function checkTouchHover() {
+      const vh = window.innerHeight;
+      const zoneTop = vh * 0.28;
+      const zoneBot = vh * 0.72;
+      touchEls.forEach(el => {
+        const r = el.getBoundingClientRect();
+        const elCenter = r.top + r.height / 2;
+        el.classList.toggle('touch-in', elCenter > zoneTop && elCenter < zoneBot);
+      });
+    }
+
+    let touchTick = false;
+    window.addEventListener('scroll', () => {
+      if (!touchTick) {
+        requestAnimationFrame(() => { checkTouchHover(); touchTick = false; });
+        touchTick = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', checkTouchHover);
+    checkTouchHover();
+  }
+</script>
+</body>
+</html>
