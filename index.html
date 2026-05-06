@@ -2357,21 +2357,29 @@
   window.addEventListener('resize', updateParallax);
   updateParallax();
 
-  /* ─── Touch Hover — ativa .touch-in ao atingir o centro da tela ─── */
+  /* ─── Touch Hover — somente o item mais próximo do centro recebe .touch-in ─── */
   if (window.matchMedia('(hover: none)').matches) {
     const touchEls = document.querySelectorAll(
       '.problema-item, .grid-solucoes .card, .team-card, .ben-card, .cmp-row, .acc-item'
     );
 
     function checkTouchHover() {
-      const vh = window.innerHeight;
-      const zoneTop = vh * 0.28;
-      const zoneBot = vh * 0.72;
+      const vh  = window.innerHeight;
+      const mid = vh / 2;
+      const maxDist = vh * 0.34; // elemento precisa estar a no máximo 34% do centro
+
+      let closestEl   = null;
+      let closestDist = Infinity;
+
       touchEls.forEach(el => {
         const r = el.getBoundingClientRect();
-        const elCenter = r.top + r.height / 2;
-        el.classList.toggle('touch-in', elCenter > zoneTop && elCenter < zoneBot);
+        if (r.bottom < 0 || r.top > vh) return; // ignora fora da viewport
+        const dist = Math.abs((r.top + r.height / 2) - mid);
+        if (dist < closestDist) { closestDist = dist; closestEl = el; }
       });
+
+      const activeEl = closestDist <= maxDist ? closestEl : null;
+      touchEls.forEach(el => el.classList.toggle('touch-in', el === activeEl));
     }
 
     let touchTick = false;
